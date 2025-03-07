@@ -5,7 +5,9 @@ description = "Add your description here"
 authors = [
     { name = "Фаль Александр Евгеньевич", email = "iamafal@yandex.ru" }
 ]
-dependencies = []
+dependencies = [
+    "pydantic==2.8.2",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 
@@ -15,10 +17,15 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = [
+    "pytest>=8.2.2",
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/microarch_delivery"]
+
+[tool.pytest.ini_options]
+pythonpath = "src"
