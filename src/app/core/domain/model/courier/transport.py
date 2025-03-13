@@ -1,4 +1,4 @@
-from pydantic import BaseModel, PrivateAttr
+from pydantic import BaseModel, PrivateAttr, computed_field
 from typing import ClassVar
 from uuid import UUID, uuid4
 from app.core.domain.kernel.location import Location
@@ -22,14 +22,17 @@ class Transport(BaseModel):
         self.__name = name
         self.__speed = speed
 
+    @computed_field()
     @property
     def id(self) -> UUID:
         return self.__id  # Expose read-only ID
 
+    @computed_field()
     @property
     def name(self) -> str:
         return self.__name  # Read-only name
 
+    @computed_field()
     @property
     def speed(self) -> int:
         return self.__speed  # Read-only speed
