@@ -1,6 +1,6 @@
 from enum import Enum
 from uuid import UUID, uuid4
-from pydantic import BaseModel, PrivateAttr
+from pydantic import BaseModel, PrivateAttr, computed_field
 from app.core.domain.kernel.location import Location
 from app.core.domain.model.courier.transport import Transport
 
@@ -47,22 +47,27 @@ class Courier(BaseModel):
             _status=CourierStatus.FREE
         )
 
+    @computed_field
     @property
     def id(self) -> UUID:
         return self.__id
 
+    @computed_field
     @property
     def name(self) -> str:
         return self.__name
 
+    @computed_field
     @property
     def transport(self) -> Transport:
         return self.__transport
 
+    @computed_field
     @property
     def location(self) -> Location:
         return self.__location
 
+    @computed_field
     @property
     def status(self) -> CourierStatus:
         return self.__status

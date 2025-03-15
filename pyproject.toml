@@ -7,6 +7,9 @@ authors = [
 ]
 dependencies = [
     "pydantic==2.8.2",
+    "fastapi[standard]==0.115.11",
+    "dishka==1.4.2",
+    "hypercorn==0.17.3",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -18,7 +21,8 @@ build-backend = "hatchling.build"
 [tool.rye]
 managed = true
 dev-dependencies = [
-    "pytest>=8.2.2",
+    "pytest==8.3.5",
+    "pytest-asyncio==0.25.3",
 ]
 
 [tool.hatch.metadata]
@@ -29,3 +33,4 @@ packages = ["src/microarch_delivery"]
 
 [tool.pytest.ini_options]
 pythonpath = "src"
+asyncio_mode = "auto"
