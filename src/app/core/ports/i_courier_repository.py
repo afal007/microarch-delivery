@@ -20,3 +20,7 @@ class ICourierRepository(ABC):
     @abstractmethod
     def get_all_free(self) -> List[Courier]:
         pass
+
+    @abstractmethod
+    def get_all(self) -> List[Courier]:
+        pass

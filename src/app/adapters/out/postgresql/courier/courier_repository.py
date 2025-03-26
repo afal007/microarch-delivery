@@ -37,3 +37,8 @@ class CourierRepository(ICourierRepository):
                 select(CourierDB).filter_by(status=CourierStatus.FREE.value)
             )
             return [row.to_domain() for row in result.scalars().all()]
+
+    async def get_all(self) -> List[Courier]:
+        async with self._session_factory() as session:
+            result = await session.execute(select(CourierDB))
+            return [row.to_domain() for row in result.scalars().all()]
