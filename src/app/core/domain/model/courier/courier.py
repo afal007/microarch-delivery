@@ -47,6 +47,18 @@ class Courier(BaseModel):
             _status=CourierStatus.FREE
         )
 
+    @classmethod
+    def restore(cls, id: UUID, name: str, location_x: int, location_y: int, status: str,
+                transport: Transport) -> "Courier":
+        return cls(
+            _create_key=cls.__create_key,
+            _id=id,
+            _name=name,
+            _transport=transport,
+            _location=Location(x=location_x, y=location_y),
+            _status=CourierStatus(status)
+        )
+
     @computed_field
     @property
     def id(self) -> UUID:
