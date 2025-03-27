@@ -1,16 +1,21 @@
-from dataclasses import dataclass
+from abc import abstractmethod
 
-from app.core.application.usecases.common.command import Command
-from app.core.ports.i_order_repository import IOrderRepository
+from app.core.application.usecases.common.command import Command, ICommandHandler
 from app.core.ports.i_courier_repository import ICourierRepository
+from app.core.ports.i_order_repository import IOrderRepository
 
 
-@dataclass
 class MoveCouriersCommand(Command):
     pass
 
 
-class MoveCouriersHandler:
+class IMoveCouriersHandler(ICommandHandler):
+    @abstractmethod
+    async def handle(self, command: MoveCouriersCommand) -> None:
+        pass
+
+
+class MoveCouriersHandler(IMoveCouriersHandler):
     def __init__(self, order_repository: IOrderRepository, courier_repository: ICourierRepository):
         self._order_repository = order_repository
         self._courier_repository = courier_repository

@@ -1,20 +1,27 @@
-import uuid
 import random
-from dataclasses import dataclass
+import uuid
+from abc import abstractmethod
 
-from app.core.application.usecases.common.command import Command
+from pydantic import BaseModel
+
+from app.core.application.usecases.common.command import Command, ICommandHandler
 from app.core.domain.kernel.location import Location
 from app.core.domain.model.order.order import Order
 from app.core.ports.i_order_repository import IOrderRepository
 
 
-@dataclass
-class CreateOrderCommand(Command):
+class CreateOrderCommand(BaseModel, Command):
     order_id: uuid.UUID
     street: str | None  # пока игнорируется, будет использоваться после интеграции с Geo
 
 
-class CreateOrderHandler:
+class ICreateOrderHandler(ICommandHandler):
+    @abstractmethod
+    async def handle(self, command: CreateOrderCommand) -> None:
+        pass
+
+
+class CreateOrderHandler(ICreateOrderHandler):
     def __init__(self, order_repository: IOrderRepository):
         self._order_repository = order_repository
 

@@ -1,11 +1,13 @@
-from uuid import UUID
+from abc import abstractmethod
 from typing import List
+from uuid import UUID
+
 from pydantic import BaseModel
 
 from app.core.application.usecases.common.location_dto import LocationDTO
-from app.core.application.usecases.common.query import Query
-from app.core.ports.i_order_repository import IOrderRepository
+from app.core.application.usecases.common.query import IQueryHandler, Query
 from app.core.domain.model.order.order import Order
+from app.core.ports.i_order_repository import IOrderRepository
 
 
 class OrderDTO(BaseModel):
@@ -17,7 +19,13 @@ class GetUnfinishedOrdersQuery(Query):
     pass
 
 
-class GetUnfinishedOrdersHandler:
+class IGetUnfinishedOrdersHandler(IQueryHandler):
+    @abstractmethod
+    async def handle(self, query: GetUnfinishedOrdersQuery) -> List[OrderDTO]:
+        pass
+
+
+class GetUnfinishedOrdersHandler(IGetUnfinishedOrdersHandler):
     def __init__(self, order_repository: IOrderRepository):
         self._order_repository = order_repository
 
