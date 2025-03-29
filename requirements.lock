@@ -18,6 +18,8 @@ anyio==4.8.0
     # via httpx
     # via starlette
     # via watchfiles
+apscheduler==3.11.0
+    # via microarch-delivery
 certifi==2025.1.31
     # via httpcore
     # via httpx
@@ -118,6 +120,8 @@ typing-extensions==4.12.2
     # via rich-toolkit
     # via sqlalchemy
     # via typer
+tzlocal==5.3.1
+    # via apscheduler
 uvicorn==0.34.0
     # via fastapi
     # via fastapi-cli

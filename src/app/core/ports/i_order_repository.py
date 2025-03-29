@@ -1,16 +1,17 @@
 from abc import ABC, abstractmethod
-from uuid import UUID
 from typing import List
+from uuid import UUID
+
 from app.core.domain.model.order.order import Order
 
 
 class IOrderRepository(ABC):
     @abstractmethod
-    def add(self, order: Order) -> None:
+    async def add(self, order: Order) -> None:
         pass
 
     @abstractmethod
-    def update(self, order: Order) -> None:
+    async def update(self, order: Order) -> None:
         pass
 
     @abstractmethod
@@ -18,9 +19,9 @@ class IOrderRepository(ABC):
         pass
 
     @abstractmethod
-    def get_all_new(self) -> List[Order]:
+    async def get_all_new(self) -> List[Order]:
         pass
 
     @abstractmethod
-    def get_all_assigned(self) -> List[Order]:
+    async def get_all_assigned(self) -> List[Order]:
         pass

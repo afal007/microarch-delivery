@@ -19,6 +19,8 @@ anyio==4.8.0
     # via httpx
     # via starlette
     # via watchfiles
+apscheduler==3.11.0
+    # via microarch-delivery
 certifi==2025.1.31
     # via httpcore
     # via httpx
@@ -142,6 +144,8 @@ typing-extensions==4.12.2
     # via sqlalchemy
     # via testcontainers
     # via typer
+tzlocal==5.3.1
+    # via apscheduler
 urllib3==2.3.0
     # via docker
     # via requests
