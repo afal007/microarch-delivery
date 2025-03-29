@@ -1,8 +1,8 @@
 from abc import abstractmethod
 
 from app.core.application.usecases.common.command import Command, ICommandHandler
-from app.core.ports.i_courier_repository import ICourierRepository
-from app.core.ports.i_order_repository import IOrderRepository
+from app.core.ports.courier_repository import ICourierRepository
+from app.core.ports.order_repository import IOrderRepository
 
 
 class MoveCouriersCommand(Command):

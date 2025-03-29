@@ -41,6 +41,8 @@ fastapi-cli==0.0.7
     # via fastapi
 greenlet==3.1.1
     # via sqlalchemy
+grpcio==1.71.0
+    # via microarch-delivery
 h11==0.14.0
     # via httpcore
     # via hypercorn
@@ -90,6 +92,8 @@ pygments==2.19.1
     # via rich
 python-dotenv==1.0.1
     # via uvicorn
+python-json-logger==3.3.0
+    # via microarch-delivery
 python-multipart==0.0.20
     # via fastapi
 pyyaml==6.0.2

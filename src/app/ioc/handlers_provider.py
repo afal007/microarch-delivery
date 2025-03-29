@@ -8,14 +8,18 @@ from app.core.application.usecases.queries.get_all_couriers import GetAllCourier
 from app.core.application.usecases.queries.get_unfinished_orders import GetUnfinishedOrdersHandler, \
     IGetUnfinishedOrdersHandler
 from app.core.domain.services.i_dispatch_service import IDispatchService
-from app.core.ports.i_courier_repository import ICourierRepository
-from app.core.ports.i_order_repository import IOrderRepository
+from app.core.ports.courier_repository import ICourierRepository
+from app.core.ports.geo_client import IGeoClient
+from app.core.ports.order_repository import IOrderRepository
 
 
 class HandlersProvider(Provider):
     @provide(scope=Scope.APP)
-    def get_create_order_handler(self, order_repository: IOrderRepository) -> ICreateOrderHandler:
-        return CreateOrderHandler(order_repository)
+    def get_create_order_handler(self,
+                                 order_repository: IOrderRepository,
+                                 geo_client: IGeoClient
+                                 ) -> ICreateOrderHandler:
+        return CreateOrderHandler(order_repository, geo_client)
 
     @provide(scope=Scope.APP)
     def get_dispatch_orders_handler(self,
