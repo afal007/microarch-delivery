@@ -30,6 +30,17 @@ class Order(BaseModel):
         self.__courier_id = _courier_id
 
     @classmethod
+    def restore(cls, id: UUID, location_x: int, location_y: int, status: str, courier_id: UUID) -> "Order":
+        """Factory method to restore an order from """
+        return cls(
+            _create_key=cls.__create_key,
+            _id=id,
+            _location=Location(x=location_x, y=location_y),
+            _status=OrderStatus(status),
+            _courier_id=courier_id
+        )
+
+    @classmethod
     def create_new(cls, id: UUID, location: Location) -> "Order":
         """Factory method to create an order with default status."""
         return cls(
