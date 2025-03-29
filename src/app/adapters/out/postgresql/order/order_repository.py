@@ -5,7 +5,7 @@ from sqlalchemy.future import select
 
 from app.adapters.out.postgresql.order.order_db import OrderDB
 from app.core.domain.model.order.order import Order, OrderStatus
-from app.core.ports.i_order_repository import IOrderRepository
+from app.core.ports.order_repository import IOrderRepository
 
 
 class OrderRepository(IOrderRepository):

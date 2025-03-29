@@ -3,8 +3,8 @@ from sqlalchemy.ext.asyncio import async_sessionmaker
 
 from app.adapters.out.postgresql.courier.courier_repository import CourierRepository
 from app.adapters.out.postgresql.order.order_repository import OrderRepository
-from app.core.ports.i_courier_repository import ICourierRepository
-from app.core.ports.i_order_repository import IOrderRepository
+from app.core.ports.courier_repository import ICourierRepository
+from app.core.ports.order_repository import IOrderRepository
 
 
 class RepositoryProvider(Provider):

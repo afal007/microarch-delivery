@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "filters": {
+    "log_context": {
+      "()": "src.app.main.LogContextFilter",
+      "name": "log_context"
+    }
+  },
+  "formatters": {
+    "ecs": {
+      "()": "pythonjsonlogger.jsonlogger.JsonFormatter",
+      "fmt": "%(asctime)s %(levelname)s %(service_name)s %(name)s %(message)s %(trace_id)s %(span_id)s %(service_name)s %(event_dataset)s",
+      "datefmt": "%Y-%m-%dT%H:%M:%S.%s",
+      "rename_fields": {
+        "asctime": "@timestamp",
+        "levelname": "log.level",
+        "name": "log.logger"
+      }
+    },
+    "spring": {
+      "class": "logging.Formatter",
+      "format": "%(asctime)s.%(msecs)03dZ %(levelname)-5s [%(service_name)s,%(trace_id)s,%(span_id)s,%(user_id)s] %(process)d --- [%(threadName)s] %(name)-40s : %(message)s",
+      "datefmt": "%Y-%m-%d %H:%M:%S"
+    }
+  },
+  "handlers": {
+    "default": {
+      "class": "logging.StreamHandler",
+      "level": "DEBUG",
+      "filters": [
+        "log_context"
+      ],
+      "formatter": "spring"
+    }
+  },
+  "loggers": {
+    "": {
+      "handlers": [
+        "default"
+      ],
+      "level": "DEBUG",
+      "propagate": false
+    },
+    "uvicorn": {
+      "handlers": [
+        "default"
+      ],
+      "level": "DEBUG",
+      "propagate": false
+    },
+    "uvicorn.error": {
+      "handlers": [
+        "default"
+      ],
+      "level": "INFO",
+      "propagate": false
+    },
+    "uvicorn.access": {
+      "handlers": [
+        "default"
+      ],
+      "level": "INFO",
+      "propagate": false
+    }
+  }
+}

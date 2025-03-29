@@ -1,3 +1,4 @@
+import logging
 from abc import abstractmethod
 from typing import List
 from uuid import UUID
@@ -7,7 +8,9 @@ from pydantic import BaseModel
 from app.core.application.usecases.common.location_dto import LocationDTO
 from app.core.application.usecases.common.query import IQueryHandler, Query
 from app.core.domain.model.order.order import Order
-from app.core.ports.i_order_repository import IOrderRepository
+from app.core.ports.order_repository import IOrderRepository
+
+logger = logging.getLogger(__name__)
 
 
 class OrderDTO(BaseModel):
@@ -31,6 +34,7 @@ class GetUnfinishedOrdersHandler(IGetUnfinishedOrdersHandler):
 
     async def handle(self, query: GetUnfinishedOrdersQuery) -> List[OrderDTO]:
         # TODO: оптимизировать одним запросом
+        logger.info("Получение списка незавершенных заказов")
         created = await self._order_repository.get_all_new()
         assigned = await self._order_repository.get_all_assigned()
         orders: List[Order] = created + assigned

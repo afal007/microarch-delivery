@@ -24,7 +24,7 @@ order_router = APIRouter(route_class=DishkaRoute)
 )
 async def create_order(handler: FromDishka[ICreateOrderHandler]) -> None:
     """Позволяет создать заказ с целью тестирования"""
-    await handler.handle(CreateOrderCommand(order_id=uuid.uuid4(), street="Ignored"))
+    await handler.handle(CreateOrderCommand(order_id=uuid.uuid4(), street="Street"))
     return
 
 

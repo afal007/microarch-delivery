@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from app.core.application.usecases.common.location_dto import LocationDTO
 from app.core.application.usecases.common.query import IQueryHandler, Query
 from app.core.domain.model.courier.courier import Courier
-from app.core.ports.i_courier_repository import ICourierRepository
+from app.core.ports.courier_repository import ICourierRepository
 
 
 class CourierDTO(BaseModel):

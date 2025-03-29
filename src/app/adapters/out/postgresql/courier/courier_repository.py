@@ -6,7 +6,7 @@ from sqlalchemy.future import select
 from app.adapters.out.postgresql.courier.courier_db import CourierDB
 from app.adapters.out.postgresql.courier.transport_db import TransportDB
 from app.core.domain.model.courier.courier import Courier, CourierStatus
-from app.core.ports.i_courier_repository import ICourierRepository
+from app.core.ports.courier_repository import ICourierRepository
 
 
 class CourierRepository(ICourierRepository):

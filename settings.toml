@@ -11,16 +11,5 @@ driver = "postgresql+psycopg"
 database = "delivery"
 dsn = "@format {this.postgres.driver}://{this.postgres.user}:{this.postgres.password}@{this.postgres.host}:{this.postgres.port}/{this.postgres.database}"
 
-
-#postgres.echo = false
-#postgres.pool_size = 6
-#postgres.pool_recycle = 3600
-#postgres.max_overflow = 6
-#postgres.port = 5432
-#postgres.host = "localhost"
-#postgres.user = "postgres"
-#postgres.password = "postgres"
-#postgres.driver = "postgresql+psycopg"
-#postgres.database = "postgres"
-#postgres.dsn = "@format {this.postgres.driver}://{this.postgres.user}:{this.postgres.password}@{this.postgres.host}:{this.postgres.port}/{this.postgres.database}"
-#postgres.dsn = "@format {env[HOME]}/{this.current_env}/{env[PROGRAM_NAME]}/{this.DB_NAME}"
+[default.geo]
+url = "127.0.0.1:5004"
