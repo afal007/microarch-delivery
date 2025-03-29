@@ -27,8 +27,6 @@ class CreateOrderHandler(ICreateOrderHandler):
         self._order_repository = order_repository
 
     async def handle(self, command: CreateOrderCommand) -> None:
-        await self._geo_client.connect()
         location_geo = await self._geo_client.get_geolocation("Street")
         order = Order.create_new(id=command.order_id, location=Location(x=location_geo.x, y=location_geo.y))
-        await self._geo_client.close()
         await self._order_repository.add(order)
